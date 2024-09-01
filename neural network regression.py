@@ -64,17 +64,22 @@ print(y_preds_1)
 
 # 可視化模型（定義）
 def plot_predictions(x_train, y_train, x_test, y_test, predictions):
-
     plt.figure(figsize=(7, 7))
+
+    plt.scatter(x_train, y_train, c="b", label="Training data") #用藍色表示
+    plt.scatter(x_test, y_test, c="g", label="Testing data") #用綠色表示
+    plt.scatter(x_test, predictions, c="r", label="Predictions") #用紅色表示
+
     plt.xlabel('Feature - age')
     plt.ylabel('Target - charges')
     plt.title('Model outcome')
+    plt.legend(); #表示圖例說明
     plt.show()
 
 
 # 套用上面的定義，選取一個自變項（age）的索引進行可視化呈現，0表示column的索引位置，也就是第一欄
 plot_predictions(x_train.iloc[:, 0], y_train,
-                 x_test.iloc[:, 0], y_test, y_preds_１)
+                 x_test.iloc[:, 0], y_test, y_preds_1)
 
 
 # 繪製模型訓練過程中的損失曲線
@@ -82,4 +87,3 @@ pd.DataFrame(history.history).plot()
 plt.ylabel('Loss')
 plt.xlabel('Epochs')
 plt.show()
-
